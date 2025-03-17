@@ -19,8 +19,8 @@ export default defineConfig({
   content: {
     pipeline: {
       include: [
-        //参考：https://unocss.dev/guide/extracting#extracting-from-build-tools-pipeline
-        /\.(vue|[jt]sx|mdx?|html)($|\?)/,
+        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        'src/**/*.{js,ts}',
         'src/router/index.ts',
         'src/views/home/utils/menuConfig.ts',
       ],

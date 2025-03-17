@@ -113,9 +113,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { Widget, WidgetIconVO } from '../../utils/types'
+import type { Widget, WidgetIconVO } from '@/utils/types'
 import { useModal, useMessage } from 'naive-ui'
-import { swatches } from '../../utils'
+import { swatches } from '@/utils'
 import { VueCropper } from 'vue-cropper'
 
 const iconNameMaxLength = 6
@@ -176,7 +176,7 @@ async function onGetIcon() {
 function openIconSetting(widget: Widget) {
   iconForm.value.id = widget.id
   iconForm.value.addr = widget.addr || ''
-  iconForm.value.name = widget.iconName
+  iconForm.value.name = widget.name
   iconForm.value.iconColor = widget.iconColor
   iconForm.value.iconName = widget.iconName
   iconForm.value.iconType = widget.iconType

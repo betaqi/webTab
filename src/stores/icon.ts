@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import iconSchema from '@/schema/iconSchema'
+import type { Widget } from '@/utils/types'
 
 interface Values {
   [key: string]: any
@@ -46,5 +47,30 @@ export const useIconStore = defineStore('icon', () => {
     }
   })
 
-  return { values, setNameColor }
+  const getIconTextStyle = (widget: Widget) => {
+    const baseScale = 0.94
+    const text = widget.iconName
+    const { width } = widget.size
+    if (width === 1) {
+      const containerWidth = width * values.iconSize
+      const span = document.createElement('span')
+      span.style.fontSize = '22px'
+      span.style.visibility = 'hidden'
+      span.style.fontWeight = '500'
+      span.innerText = text
+      document.body.appendChild(span)
+      const textWidth = span.offsetWidth
+      document.body.removeChild(span)
+      const scale = containerWidth / (textWidth + 10)
+      return {
+        transform: `scale(${scale > baseScale ? baseScale : scale}) translateX(-50%)`,
+      }
+    } else {
+      return {
+        transform: `scale(${baseScale}) translateX(-50%)`,
+      }
+    }
+  }
+
+  return { values, setNameColor, getIconTextStyle }
 })

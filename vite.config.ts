@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    // vueDevTools(),
+    vueDevTools(),
     UnoCSS(),
     Icons({
       autoInstall: true,

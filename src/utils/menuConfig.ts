@@ -1,23 +1,6 @@
 import type { IContextMenu, MenuOption, WidgetMenuConfig } from './types'
 
-// 定义菜单事件类型
-export type RootMenuEventType = 'ADD_WIDGET' | 'CHANGE_WALLPAPER'
-
-export type WidgetMenuEventType = 'LAYOUT_WIDGET' | 'DELETE_WIDGET'
-
-export type MenuEventType = RootMenuEventType | WidgetMenuEventType
-
-// 布局选项
-const layoutOptions: MenuOption[] = [
-  { id: '1x1', label: '1 x 1', event: 'LAYOUT_WIDGET_1X1' },
-  { id: '2x1', label: '2 x 1', event: 'LAYOUT_WIDGET_2X1' },
-  { id: '1x2', label: '1 x 2', event: 'LAYOUT_WIDGET_1X2' },
-  { id: '2x2', label: '2 x 2', event: 'LAYOUT_WIDGET_2X2' },
-  { id: '4x2', label: '4 x 2', event: 'LAYOUT_WIDGET_4X2' },
-]
-
-// 根菜单配置
-export const rootMenuConfig: IContextMenu[] = [
+const rootMenuConfig: IContextMenu[] = [
   {
     id: 'add',
     label: '添加组件',
@@ -38,8 +21,15 @@ export const rootMenuConfig: IContextMenu[] = [
   },
 ]
 
-// Widget菜单配置
-export const widgetMenuConfig: WidgetMenuConfig = {
+const layoutOptions: MenuOption[] = [
+  { id: '1x1', label: '1 x 1', event: 'LAYOUT_WIDGET_1X1' },
+  { id: '2x1', label: '2 x 1', event: 'LAYOUT_WIDGET_2X1' },
+  { id: '1x2', label: '1 x 2', event: 'LAYOUT_WIDGET_1X2' },
+  { id: '2x2', label: '2 x 2', event: 'LAYOUT_WIDGET_2X2' },
+  { id: '4x2', label: '4 x 2', event: 'LAYOUT_WIDGET_4X2' },
+]
+
+const widgetMenuConfig: WidgetMenuConfig = {
   icon: [
     {
       id: 'icon-open-tab',
@@ -67,4 +57,17 @@ export const widgetMenuConfig: WidgetMenuConfig = {
       event: 'DELETE_WIDGET',
     },
   ],
+}
+
+export const menuConfigs = {
+  global: {
+    items: rootMenuConfig,
+  },
+
+  widget(type: string) {
+    const commonItems: IContextMenu[] = []
+    const typeSpecificItems = widgetMenuConfig
+
+    return [...commonItems, ...(typeSpecificItems[type] || [])]
+  },
 }

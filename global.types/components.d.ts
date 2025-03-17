@@ -8,8 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppSearch: typeof import('./../src/components/apps/appSearch.vue')['default']
     ContextMenu: typeof import('./../src/components/ContextMenu.vue')['default']
     ContextMenuContainer: typeof import('./../src/components/ContextMenuContainer.vue')['default']
+    DrawerSetting: typeof import('./../src/components/drawerSetting/index.vue')['default']
+    IconSetting: typeof import('./../src/components/dialogs/iconSetting.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NColorPicker: typeof import('naive-ui')['NColorPicker']
@@ -29,5 +32,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Wallpaper: typeof import('./../src/components/wallpaper.vue')['default']
+    WidgetSetting: typeof import('./../src/components/drawerSetting/widgetSetting.vue')['default']
   }
 }

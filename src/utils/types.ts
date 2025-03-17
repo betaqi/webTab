@@ -10,7 +10,7 @@ interface MenuOption {
 interface IContextMenu {
   id: string
   label: string
-  event: string
+  event?: string
   icon?: string
   options?: MenuOption[]
 }
@@ -27,10 +27,7 @@ interface Widget {
     width: number
     height: number
   }
-  state: {
-    isActive: boolean
-    isDragging: boolean
-  }
+
   iconImage?: string
   config?: Record<string, any> // 不同组件的特定配置
 }

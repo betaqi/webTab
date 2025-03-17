@@ -37,16 +37,17 @@
 </template>
 
 <script setup lang="ts">
+import type { IContextMenu } from '@/utils/types'
 import gsap from 'gsap'
 
 interface Props {
-  show: boolean
+  isVisible: boolean
   position: { x: number; y: number }
   menuItems: IContextMenu[]
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits(['update:show', 'select'])
+const emit = defineEmits(['update:show', 'select', 'close'])
 
 const menuRef = ref<HTMLElement | null>(null)
 const menuSize = ref({ width: 0, height: 0 })
@@ -83,7 +84,7 @@ const adjustedPosition = computed(() => {
 watch(
   () => props.position,
   async () => {
-    if (props.show) {
+    if (props.isVisible) {
       // 显示菜单但设置为透明
       isVisible.value = true
       await nextTick()
@@ -118,7 +119,7 @@ watch(
 
 // 监听显示状态只处理隐藏动画
 watch(
-  () => props.show,
+  () => props.isVisible,
   async newVal => {
     if (!newVal) {
       // 执行隐藏动画
@@ -136,8 +137,12 @@ watch(
 )
 
 const handleMenuClick = async (item: IContextMenu) => {
-  emit('update:show', false)
   emit('select', item)
+  onClose()
+}
+
+const onClose = () => {
+  emit('close')
 }
 </script>
 

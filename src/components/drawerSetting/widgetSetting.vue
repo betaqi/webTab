@@ -24,17 +24,9 @@ import IconSetting from './iconSetting.vue'
 import WallpaperSetting from './index.vue'
 const isShowDrawer = defineModel({ default: false })
 
-const props = defineProps<{
-  activeMenu: string | null
-}>()
+const props = defineProps()
 
 const currentMenu = ref('icon')
-watch(
-  () => props.activeMenu,
-  newVal => {
-    currentMenu.value = newVal ?? 'icon'
-  }
-)
 
 const menuOptions: MenuOption[] = [
   {
@@ -48,6 +40,15 @@ const menuOptions: MenuOption[] = [
     icon: () => h('div', { class: 'i-mingcute:layout-6-line font-size-16' }),
   },
 ]
+
+function openDrawer(menu: string) {
+  isShowDrawer.value = true
+  currentMenu.value = menu
+}
+
+defineExpose({
+  openDrawer,
+})
 </script>
 
 <style lang="scss">

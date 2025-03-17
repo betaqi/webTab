@@ -1,47 +1,52 @@
-export interface MenuPosition {
-  x: number
-  y: number
-}
+import { menuConfigs } from '@/utils/menuConfig'
+import type { IContextMenu, Widget } from '@/utils/types'
 
-export function useContextMenu<MenuType>(initialItems: MenuType[] = []) {
-  const show = ref(false)
-  const position = ref<MenuPosition>({ x: 0, y: 0 })
-  const menuItems = ref<MenuType[]>(initialItems)
+export function useContextMenuManager() {
+  const activeMenuType = ref<'global' | 'widget' | null>(null)
+  const position = ref({ x: 0, y: 0 })
+  const menuItems = ref<IContextMenu[]>([])
+  const currentWidget = ref<Widget | null>(null)
 
-  const handleContextMenu = (e: MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+  function showGlobalMenu(event: MouseEvent) {
+    activeMenuType.value = 'global'
+    position.value = { x: event.clientX, y: event.clientY }
+    menuItems.value = menuConfigs.global.items
+    currentWidget.value = null
+  }
 
-    position.value = {
-      x: e.clientX,
-      y: e.clientY,
+  function showWidgetMenu(event: MouseEvent, widget: Widget) {
+    activeMenuType.value = 'widget'
+    position.value = { x: event.clientX, y: event.clientY }
+    menuItems.value = menuConfigs.widget(widget.type)
+    const layoutMenuItem = menuItems.value.find(item => item.id === 'layout')
+    if (layoutMenuItem && layoutMenuItem.options) {
+      layoutMenuItem.options = layoutMenuItem.options.map(option => ({
+        ...option,
+        active: option.id === `${widget.size.width}x${widget.size.height}`,
+      }))
     }
 
-    show.value = true
+    currentWidget.value = widget
   }
 
-  const closeMenu = () => {
-    show.value = false
+  function hideAllMenus() {
+    activeMenuType.value = null
   }
 
-  const setMenuItems = (items: MenuType[]) => {
-    menuItems.value = items
-  }
-
-  const setupClickOutside = () => {
-    document.addEventListener('click', closeMenu)
-    return () => {
-      document.removeEventListener('click', closeMenu)
-    }
-  }
+  const isGlobalMenuVisible = computed(() => activeMenuType.value === 'global')
+  const isWidgetMenuVisible = computed(() => activeMenuType.value === 'widget')
+  const visible = computed(() => isGlobalMenuVisible.value || isWidgetMenuVisible.value)
 
   return {
-    show,
+    isGlobalMenuVisible,
+    isWidgetMenuVisible,
+    currentWidget,
+    activeMenuType,
+    visible,
     position,
     menuItems,
-    handleContextMenu,
-    closeMenu,
-    setMenuItems,
-    setupClickOutside,
+    showGlobalMenu,
+    showWidgetMenu,
+    hideAllMenus,
   }
 }

@@ -49,9 +49,9 @@
 
 <script setup lang="ts">
 import { useIconStore } from '@/stores/icon'
-import iconSchema from '../../../../schema/iconSchema'
+import iconSchema from '@/schema/iconSchema'
 import { storeToRefs } from 'pinia'
-import { swatches } from '@/views/home/utils'
+import { swatches } from '@/utils'
 
 const iconStore = useIconStore()
 const { values } = storeToRefs(iconStore)

@@ -15,7 +15,7 @@ interface IContextMenu {
   options?: MenuOption[]
 }
 
-interface Widget {
+interface IWidget {
   id: string
   name: string
   iconName: string
@@ -34,7 +34,7 @@ interface Widget {
 
 type WidgetIconType = 'uploadIcon' | 'textIcon'
 type WidgetIconVO = Pick<
-  Widget,
+  IWidget,
   'id' | 'addr' | 'name' | 'iconColor' | 'iconName' | 'iconImage' | 'iconType'
 >
 
@@ -45,7 +45,7 @@ type WidgetMenuConfig = {
 export type {
   IContextMenu,
   MenuOption,
-  Widget,
+  IWidget,
   WidgetMenuConfig,
   WidgetIconVO,
   WidgetIconType,

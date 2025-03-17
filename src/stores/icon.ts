@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import iconSchema from '@/schema/iconSchema'
-import type { Widget } from '@/utils/types'
+import type { IWidget } from '@/utils/types'
 
 interface Values {
   [key: string]: any
@@ -47,7 +47,7 @@ export const useIconStore = defineStore('icon', () => {
     }
   })
 
-  const getIconTextStyle = (widget: Widget) => {
+  const getIconTextStyle = (widget: IWidget) => {
     const baseScale = 0.94
     const text = widget.iconName
     const { width } = widget.size

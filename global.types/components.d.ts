@@ -8,7 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppSearch: typeof import('./../src/components/apps/appSearch.vue')['default']
+    AppSearch: typeof import('../src/components/apps/Search.vue')['default']
     ContextMenu: typeof import('./../src/components/ContextMenu.vue')['default']
     ContextMenuContainer: typeof import('./../src/components/ContextMenuContainer.vue')['default']
     DrawerSetting: typeof import('./../src/components/drawerSetting/index.vue')['default']
@@ -31,7 +31,9 @@ declare module 'vue' {
     NUploadDragger: typeof import('naive-ui')['NUploadDragger']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Search: typeof import('./../src/components/apps/Search.vue')['default']
     Wallpaper: typeof import('./../src/components/wallpaper.vue')['default']
+    Widget: typeof import('./../src/components/apps/widget.vue')['default']
     WidgetSetting: typeof import('./../src/components/drawerSetting/widgetSetting.vue')['default']
   }
 }

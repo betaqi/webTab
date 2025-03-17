@@ -1,8 +1,8 @@
-import type { Widget, WidgetIconVO } from '@/utils/types'
+import type { IWidget, WidgetIconVO } from '@/utils/types'
 import { defineStore } from 'pinia'
 
 export const useWidgetStore = defineStore('widget', () => {
-  const widgetList = ref<Widget[]>([
+  const widgetList = ref<IWidget[]>([
     {
       id: 'music_player',
       name: '音乐播放器',
@@ -70,10 +70,10 @@ export const useWidgetStore = defineStore('widget', () => {
     if (!widget) {
       new Error(`widget ${id} not found`)
     }
-    return widget as Widget
+    return widget as IWidget
   }
 
-  const getWidgetBg = (widget: Widget) => {
+  const getWidgetBg = (widget: IWidget) => {
     if (widget.iconType === 'uploadIcon') {
       return { backgroundImage: `url(${widget.iconImage})` }
     } else {
@@ -97,7 +97,7 @@ export const useWidgetStore = defineStore('widget', () => {
     })
   }
 
-  function layoutWidget(widget: Widget, size: { width: number; height: number }) {
+  function layoutWidget(widget: IWidget, size: { width: number; height: number }) {
     const findWidget = findWidgetById(widget.id)
     if (findWidget) {
       findWidget.size = size

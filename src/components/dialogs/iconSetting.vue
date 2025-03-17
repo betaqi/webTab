@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Widget, WidgetIconVO } from '@/utils/types'
+import type { IWidget, WidgetIconVO } from '@/utils/types'
 import { useModal, useMessage } from 'naive-ui'
 import { swatches } from '@/utils'
 import { VueCropper } from 'vue-cropper'
@@ -173,7 +173,7 @@ async function onGetIcon() {
   console.log(data)
 }
 
-function openIconSetting(widget: Widget) {
+function openIconSetting(widget: IWidget) {
   iconForm.value.id = widget.id
   iconForm.value.addr = widget.addr || ''
   iconForm.value.name = widget.name

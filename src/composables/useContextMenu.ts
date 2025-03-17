@@ -1,11 +1,11 @@
 import { menuConfigs } from '@/utils/menuConfig'
-import type { IContextMenu, Widget } from '@/utils/types'
+import type { IContextMenu, IWidget } from '@/utils/types'
 
 export function useContextMenuManager() {
   const activeMenuType = ref<'global' | 'widget' | null>(null)
   const position = ref({ x: 0, y: 0 })
   const menuItems = ref<IContextMenu[]>([])
-  const currentWidget = ref<Widget | null>(null)
+  const currentWidget = ref<IWidget | null>(null)
 
   function showGlobalMenu(event: MouseEvent) {
     activeMenuType.value = 'global'
@@ -14,7 +14,7 @@ export function useContextMenuManager() {
     currentWidget.value = null
   }
 
-  function showWidgetMenu(event: MouseEvent, widget: Widget) {
+  function showWidgetMenu(event: MouseEvent, widget: IWidget) {
     activeMenuType.value = 'widget'
     position.value = { x: event.clientX, y: event.clientY }
     menuItems.value = menuConfigs.widget(widget.type)

@@ -1,0 +1,31 @@
+:root {
+  /* Widget 图标相关 */
+  --icon-radius: 16px; /* 图标圆角 */
+  --icon-size: 68px; /* 图标大小 */
+  --icon-opacity: 1; /* 图标透明度 */
+  --icon-grid-width: 900px; /*图标box最大宽度*/
+
+  --icon-gap: 27px; /* 图标间距 */
+
+  --icon-name: block; /* 图标名称 */
+  --icon-nameSize: 14px; /* 图标名称大小 */
+  --icon-nameColor: #fff; /* 图标名称颜色 */
+
+  /* 时间相关 */
+  --time-size: 58px; /* 时间大小 */
+  --time-font: Orbitron; /* 时间字体 */
+  --time-color: #cccccc; /* 时间颜色 */
+  --time-fontWeight: 400; /* 时间字体粗细 */
+  --time-month: none; /* 是否显示农历 */
+  --time-week: inline; /* 是否显示星期 */
+  --time-lunar: none; /* 是否显示农历 */
+  --time-sec: none; /* 是否显示秒 */
+
+  /* 侧边栏相关 */
+  --sidebar-width: 42px; /* 侧边栏宽度 */
+  --sidebar-opacity: 0.1; /* 侧边栏透明度 */
+
+  /* 壁纸相关 */
+  --wall-mask: 0; /* 壁纸遮罩 */
+  --wall-blur: 0px; /* 壁纸模糊 */
+}

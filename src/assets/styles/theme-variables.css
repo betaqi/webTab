@@ -1,0 +1,74 @@
+html[data-theme='dark'] {
+  --bg: #0d0d0d;
+  --text-color: #ffffff;
+  --layout-header-bg: #1b1d23;
+  --layout-menu-bg: #1b1d23;
+  --menu-active-bg: #2c342c;
+  --menu-hover-bg: #272b35;
+  --warp-bg: #212327;
+  --table-header-bg: #3b3d40;
+  --table-header-text-color: #cdcecf;
+  --pagination-bg: #101115;
+  --pagination-border-color: rgba(255, 255, 255, 0.13);
+  --select-header--text-color: #ffffff;
+  --station-card-bg: #23272f;
+  --station-card-border-color: #4b5361;
+  --station-header-bg: #363a40;
+  --station-header-text-color: #fff;
+  --station-info-val-text: #fff;
+  --label-color: #c7c8cb;
+  --text-desc: #8d9095;
+  --mask-bg: #333;
+  --icon-color: #aaa;
+  --icon-hover-color: #606266;
+}
+
+html[data-theme='light'] {
+  --bg: #f1f2f6;
+  --text-color: #4d4d4d;
+  --layout-header-bg: #ffffff;
+  --layout-menu-bg: #fff;
+  --menu-active-bg: #f5fcee;
+  --menu-hover-bg: #f5f5f5;
+  --warp-bg: #ffffff;
+  --table-header-bg: #e8e9ee;
+  --table-header-text-color: #030303;
+  --pagination-bg: transparent;
+  --pagination-border-color: rgba(217, 217, 217, 1);
+  --select-header--text-color: #666;
+  --station-card-bg: #ffffff;
+  --station-card-border-color: #e9e9e9;
+  --station-header-bg: #f1f1f1;
+  --station-header-text-color: #030303;
+  --station-info-val-text: #4d4d4d;
+  --label-color: #4d4d4d;
+  --text-desc: #a8abb2;
+  --mask-bg: #f5f5f5;
+  --icon-color: #aaa;
+  --icon-hover-color: #606266;
+}
+
+html.dark {
+  --el-bg-color: #212327;
+  --el-border-color: rgba(255, 255, 255, 0.13);
+  --el-button-divide-border-color: rgba(255, 255, 255, 0.13);
+  --el-bg-color-overlay: #212327;
+  --el-text-color-regular: #c7c8cb;
+  --el-color-primary: #619925;
+  --el-color-primary-light-3: rgb(78.1, 141.8, 46.6);
+  --el-color-primary-light-5: rgb(61.5, 107, 39);
+  --el-color-primary-light-7: rgb(44.9, 72.2, 31.4);
+  --el-color-primary-light-8: rgb(36.6, 54.8, 27.6);
+  --el-color-primary-light-9: rgb(28.3, 37.4, 23.8);
+  --el-color-primary-dark-2: rgb(133.4, 206.2, 97.4);
+}
+
+html.light {
+  --el-color-primary: #619925;
+  --el-color-primary-light-3: rgb(148.6, 212.3, 117.1);
+  --el-color-primary-light-5: rgb(179, 224.5, 156.5);
+  --el-color-primary-light-7: rgb(209.4, 236.7, 195.9);
+  --el-color-primary-light-8: rgb(224.6, 242.8, 215.6);
+  --el-color-primary-light-9: rgb(239.8, 248.9, 235.3);
+  --el-color-primary-dark-2: rgb(82.4, 155.2, 46.4);
+}

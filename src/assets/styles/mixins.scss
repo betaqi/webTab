@@ -1,0 +1,77 @@
+@use 'sass:math';
+
+// 命名空间
+$namespace: v;
+// el命名空间
+$elNamespace: el;
+$W-scale-ratio-1440: math.div(1440, 1920);
+$H-scale-ratio-900: math.div(900, 1080);
+
+$W-scale-ratio-2560: math.div(2560, 1920);
+$H-scale-ratio-1440: math.div(1440, 1080);
+
+@mixin ResponsiveW($base-width) {
+  width: $base-width + px !important;
+
+  @media only screen and (max-width: 1440px) {
+    width: calc($W-scale-ratio-1440 * #{$base-width}px) !important;
+  }
+
+  @media only screen and (min-width: 2560px) {
+    width: calc($W-scale-ratio-2560 * #{$base-width}px) !important;
+  }
+}
+
+@mixin ResponsiveH($base-height) {
+  height: $base-height + px;
+
+  @media only screen and (max-width: 1440px) {
+    height: calc($H-scale-ratio-900 * #{$base-height}px);
+  }
+
+  @media only screen and (min-width: 2560px) {
+    height: calc($H-scale-ratio-1440 * #{$base-height}px);
+  }
+}
+
+@mixin ResponsiveFz($base-font-size) {
+  font-size: $base-font-size + px;
+
+  @media only screen and (max-width: 1440px) {
+    font-size: calc($W-scale-ratio-1440 * #{$base-font-size}px);
+  }
+
+  @media only screen and (min-width: 2560px) {
+    font-size: calc($W-scale-ratio-2560 * #{$base-font-size}px);
+  }
+}
+
+@mixin ResponsivePadding($top, $right, $bottom, $left) {
+  padding: $top + px $right + px $bottom + px $left + px;
+
+  @media only screen and (max-width: 1440px) {
+    padding: calc($H-scale-ratio-900 * #{$top}px) calc($W-scale-ratio-1440 * #{$right}px)
+      calc($H-scale-ratio-900 * #{$bottom}px) calc($W-scale-ratio-1440 * #{$left}px);
+  }
+
+  @media only screen and (min-width: 2560px) {
+    padding: calc($H-scale-ratio-1440 * #{$top}px) calc($W-scale-ratio-2560 * #{$right}px)
+        calc($H-scale-ratio-1440 * #{$bottom}px),
+      calc($W-scale-ratio-2560 * #{$left}px);
+  }
+}
+
+@mixin ResponsiveMargin($top, $right, $bottom, $left) {
+  margin: $top + px $right + px $bottom + px $left + px;
+
+  @media only screen and (max-width: 1440px) {
+    margin: calc($H-scale-ratio-900 * #{$top}px) calc($W-scale-ratio-1440 * #{$right}px)
+      calc($H-scale-ratio-900 * #{$bottom}px) calc($W-scale-ratio-1440 * #{$left}px);
+  }
+
+  @media only screen and (min-width: 2560px) {
+    margin: calc($H-scale-ratio-1440 * #{$top}px) calc($W-scale-ratio-2560 * #{$right}px)
+        calc($H-scale-ratio-1440 * #{$bottom}px),
+      calc($W-scale-ratio-2560 * #{$left}px);
+  }
+}

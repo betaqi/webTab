@@ -28,17 +28,11 @@ import type { IContextMenu, IWidget } from '../../utils/types'
 import { useContextMenuManager } from '@/composables/useContextMenu'
 import DrawerSetting from '@/components/drawerSetting/widgetSetting.vue'
 import IconSetting from '@/components/dialogs/iconSetting.vue'
-import { VueDraggable } from 'vue-draggable-plus'
-import { useIconStore } from '@/stores/icon'
 import { storeToRefs } from 'pinia'
 import { useWidgetStore } from '@/stores/widget'
 
 const widgetStore = useWidgetStore()
-const { widgetList } = storeToRefs(widgetStore)
-const { getWidgetBg, createWidget, onEditIcon, layoutWidget } = widgetStore
-
-const iconStore = useIconStore()
-const { getIconTextStyle } = iconStore
+const { createWidget, onEditIcon, layoutWidget } = widgetStore
 
 const {
   visible,

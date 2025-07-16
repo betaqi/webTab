@@ -1,11 +1,13 @@
-export default {
+import type { SchemaType } from "./schemaTypes.type";
+
+const wallpaperSchema: SchemaType = {
   wallpaper: {
     title: '壁纸',
     type: 'wallpaper',
     configs: [
       {
         label: '壁纸',
-        type: 'imgUpload',
+        type: 'custom-imgUpload',
         value: 'wallpaperImg',
         defaultValue: '',
       },
@@ -13,6 +15,7 @@ export default {
         label: '模糊度',
         type: 'slider',
         value: 'wallpaperBlur',
+        class: 'flex-1',
         defaultValue: 0,
         props: {
           min: 0,
@@ -25,6 +28,7 @@ export default {
         label: '遮罩浓度',
         type: 'slider',
         value: 'wallpaperMask',
+        class: 'flex-1',
         defaultValue: 0,
         props: {
           min: 0,
@@ -36,3 +40,5 @@ export default {
     ],
   },
 }
+
+export default wallpaperSchema

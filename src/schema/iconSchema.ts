@@ -1,4 +1,7 @@
-export default {
+import type { SchemaType } from "./schemaTypes.type"
+import { swatches } from '@/utils'
+
+const iconSchema: SchemaType = {
   icon: {
     title: '图标',
     type: 'icon',
@@ -14,6 +17,7 @@ export default {
           step: 2,
         },
         cssVar: '--icon-size',
+        class: 'flex-1',
         unit: 'px',
       },
       {
@@ -21,12 +25,13 @@ export default {
         type: 'slider',
         value: 'iconRadius',
         defaultValue: 16,
-        props: {
+        props: (context) => ({
           min: 0,
-          max: 100,
+          max: context?.values?.iconSize / 2 || 100,
           step: 1,
-        },
+        }),
         cssVar: '--icon-radius',
+        class: 'flex-1',
         unit: 'px',
       },
       {
@@ -34,7 +39,7 @@ export default {
         type: 'slider',
         value: 'iconOpacity',
         defaultValue: 100,
-
+        class: 'flex-1',
         props: {
           min: 0,
           max: 100,
@@ -55,6 +60,7 @@ export default {
         value: 'iconRowSpace',
         unit: 'px',
         defaultValue: 27,
+        class: 'flex-1',
         props: {
           min: 0,
           max: 100,
@@ -74,7 +80,9 @@ export default {
         value: 'nameTextShow',
         defaultValue: true,
         cssVar: '--icon-name',
-        props: {},
+        props: {
+          size: "small"
+        },
       },
       {
         label: '名称颜色',
@@ -82,11 +90,19 @@ export default {
         value: 'nameColor',
         defaultValue: '#fff',
         cssVar: '--icon-nameColor',
+        props: {
+          swatches: swatches,
+        },
+        style: {
+          width: '28px',
+          height: '28px'
+        }
       },
       {
         label: '字体大小',
         type: 'slider',
         value: 'nameSize',
+        class: 'flex-1',
         defaultValue: 14,
         props: {
           min: 12,
@@ -107,6 +123,7 @@ export default {
         type: 'slider',
         value: 'iconGridWidth',
         defaultValue: 900,
+        class: 'flex-1',
         props: {
           min: 900,
           max: 2000,
@@ -118,3 +135,5 @@ export default {
     ],
   },
 }
+
+export default iconSchema

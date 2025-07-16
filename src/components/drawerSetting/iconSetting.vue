@@ -13,33 +13,13 @@
         class="flex justify-between items-center gap-col-12px p-x-12 h-36"
       >
         <span>{{ config.label }}</span>
-        <!-- {{ config.value }} -->
-
-        <template v-if="config.type === 'slider' && config.value === 'iconRadius'">
-          <n-slider
-            class="flex-1"
-            v-model:value="values[config.value]"
-            v-bind="config.props"
-            :max="iconRadiusMax"
-          />
-        </template>
-
-        <n-slider
-          v-else-if="config.type === 'slider'"
-          class="flex-1"
-          v-model:value="values[config.value]"
-          v-bind="config.props"
-        />
-        <n-switch
-          size="small"
-          v-else-if="config.type === 'switch'"
-          v-model:value="values[config.value]"
-        />
-        <n-color-picker
-          v-else-if="config.type === 'colorPicker'"
-          v-model:value="values[config.value]"
-          style="width: 28px; height: 28px"
-          :swatches="swatches"
+        <FormBuilder
+          v-model="values[config.value]"
+          :type="config.type"
+          :style="config.style"
+          :class="config.class"
+          :props-options="config.props"
+          :context="{ values }"
         />
         <span v-if="config.unit">{{ values[config.value] }}{{ config.unit }}</span>
       </div>
@@ -49,14 +29,10 @@
 
 <script setup lang="ts">
 import { useIconStore } from '@/stores/icon'
+import FormBuilder from '@/components/common/FormBuilder.vue'
 import iconSchema from '@/schema/iconSchema'
 import { storeToRefs } from 'pinia'
-import { swatches } from '@/utils'
-
 const iconStore = useIconStore()
 const { values } = storeToRefs(iconStore)
 
-const iconRadiusMax = computed(() => {
-  return values.value?.iconSize / 2
-})
 </script>

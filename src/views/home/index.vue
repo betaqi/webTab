@@ -16,19 +16,18 @@
     @select="handleMenuSelect"
     @close="hideAllMenus"
   />
-  <IconSetting ref="iconSettingRef" @edit-icon="onEditIcon" />
-  <DrawerSetting ref="SettingDrawerRef" />
+  <IconSetting ref="iconSettingRef" @edit-icon="onEditIcon"/>
+  <DrawerSetting ref="SettingDrawerRef"/>
 </template>
 
 <script setup lang="ts">
 import ContextMenu from '@/components/ContextMenu.vue'
 import Search from '@/components/apps/Search.vue'
 import Widget from '@/components/apps/widget.vue'
-import type { IContextMenu, IWidget } from '../../utils/types'
+import type { IContextMenu, IWidget } from '@/utils/types.ts'
 import { useContextMenuManager } from '@/composables/useContextMenu'
-import DrawerSetting from '@/components/drawerSetting/widgetSetting.vue'
+import DrawerSetting from '@/components/drawerSetting/indexSetting.vue'
 import IconSetting from '@/components/dialogs/iconSetting.vue'
-import { storeToRefs } from 'pinia'
 import { useWidgetStore } from '@/stores/widget'
 
 const widgetStore = useWidgetStore()

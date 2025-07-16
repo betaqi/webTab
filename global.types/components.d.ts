@@ -11,8 +11,10 @@ declare module 'vue' {
     AppSearch: typeof import('../src/components/apps/Search.vue')['default']
     ContextMenu: typeof import('./../src/components/ContextMenu.vue')['default']
     ContextMenuContainer: typeof import('./../src/components/ContextMenuContainer.vue')['default']
-    DrawerSetting: typeof import('./../src/components/drawerSetting/index.vue')['default']
+    DrawerSetting: typeof import('../src/components/drawerSetting/indexSetting.vue')['default']
+    FormBuilder: typeof import('./../src/components/common/FormBuilder.vue')['default']
     IconSetting: typeof import('./../src/components/dialogs/iconSetting.vue')['default']
+    IndexSetting: typeof import('./../src/components/drawerSetting/indexSetting.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NColorPicker: typeof import('naive-ui')['NColorPicker']
@@ -33,7 +35,8 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Search: typeof import('./../src/components/apps/Search.vue')['default']
     Wallpaper: typeof import('./../src/components/wallpaper.vue')['default']
+    WallpaperSetting: typeof import('./../src/components/drawerSetting/wallpaperSetting.vue')['default']
     Widget: typeof import('./../src/components/apps/widget.vue')['default']
-    WidgetSetting: typeof import('./../src/components/drawerSetting/widgetSetting.vue')['default']
+    WidgetSetting: typeof import('../src/components/drawerSetting/index.vue')['default']
   }
 }

@@ -2,7 +2,7 @@
   <Teleport to="body">
     <div
       ref="menuRef"
-      class="context-menu borderBlack fixed w-[182px] rounded-md shadow p-1 select-none backdrop-blur-md z-999"
+      class="context-menu borderBlack fixed w-[152px] rounded-md shadow p-1 select-none backdrop-blur-md z-999"
       :style="{
         left: adjustedPosition.x + 'px',
         top: adjustedPosition.y + 'px',
@@ -16,7 +16,7 @@
         :class="{ 'hover:bg-[#4285f414] hover:text-green-500': !item.options }"
         @click.stop.prevent="handleMenuClick(item)"
       >
-        <div class="items-center flex gap-4">
+        <div class="items-center flex gap-1">
           <div
             :class="[
               item.icon,

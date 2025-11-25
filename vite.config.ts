@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import UnoCSS from 'unocss/vite'
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -14,7 +14,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     vueDevTools(),
-    UnoCSS(),
+    tailwindcss(),
     Icons({
       autoInstall: true,
     }),

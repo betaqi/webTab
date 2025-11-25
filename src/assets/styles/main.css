@@ -1,14 +1,15 @@
 @import './theme-variables.css';
 @import './widge-variables.css';
 @import 'vue-cropper/dist/index.css';
-@import '@unocss/reset/tailwind-compat.css';
+@import 'tailwindcss';
+@plugin "@iconify/tailwind4";
 html,
 body {
   @apply w-full h-full;
 }
 
 #app {
-  @apply wh-full relative;
+  @apply w-full h-full relative;
   z-index: 1;
 }
 .borderBlack {

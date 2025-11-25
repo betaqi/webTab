@@ -2,7 +2,7 @@
   <Teleport to="body">
     <div
       ref="menuRef"
-      class="context-menu borderBlack"
+      class="context-menu borderBlack fixed w-[182px] rounded-md shadow p-1 select-none backdrop-blur-md z-999"
       :style="{
         left: adjustedPosition.x + 'px',
         top: adjustedPosition.y + 'px',
@@ -12,20 +12,29 @@
       <div
         v-for="item in menuItems"
         :key="item.id"
-        class="menu-item"
-        :class="{ hover: !item.options }"
+        class="menu-item group cursor-pointer w-full h-auto py-[5px] px-3 rounded-[6px] leading-[26px] text-[14px] transition-all duration-400 text-gray-800"
+        :class="{ 'hover:bg-[#4285f414] hover:text-green-500': !item.options }"
         @click.stop.prevent="handleMenuClick(item)"
       >
         <div class="items-center flex gap-4">
-          <div :class="item.icon"></div>
+          <div
+            :class="[
+              item.icon,
+              'text-gray-500 text-[14px]',
+              !item.options ? 'group-hover:text-green-500' : '',
+            ]"
+          ></div>
           {{ item.label }}
         </div>
-        <p v-if="item.options" class="contextmenu-layout">
+        <p
+          v-if="item.options"
+          class="contextmenu-layout py-2 gap-2 flex flex-wrap text-[12px]"
+        >
           <span
             v-for="option in item.options"
             :key="option.id"
-            class="item-option"
-            :class="{ active: option.active }"
+            class="item-option h-6 overflow-hidden leading-6 w-12 px-[10px] bg-gray-100 rounded-[6px] text-center cursor-pointer flex items-center justify-center transition-all duration-400"
+            :class="{ 'bg-[#4285f414] text-green-500': option.active }"
             @click.stop="handleMenuClick(option)"
           >
             {{ option.label }}
@@ -110,11 +119,11 @@ watch(
           scale: 1,
           duration: 0.3,
           ease: 'elastic.out(1, 0.75)',
-        }
+        },
       )
     }
   },
-  { deep: true }
+  { deep: true },
 )
 
 // 监听显示状态只处理隐藏动画
@@ -133,7 +142,7 @@ watch(
         },
       })
     }
-  }
+  },
 )
 
 const handleMenuClick = async (item: IContextMenu) => {
@@ -148,30 +157,13 @@ const onClose = () => {
 
 <style lang="scss" scoped>
 .context-menu {
-  @apply fixed rounded-md shadow w-142 p-4 user-select-none backdrop-blur-12 z-999;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item {
-  @apply cursor-pointer w-full h-auto p-y-5 p-x-4 border-radius-6 line-height-26 font-size-14
-        transition-all-400  text-gray-800;
-
-  [class^='i-'] {
-    @apply text-gray-500 font-size-14;
-  }
-
   .contextmenu-layout {
-    @apply p-y-2 gap-4  flex flex-wrap font-size-12;
-
     .item-option {
-      @apply h-24 overflow-hidden line-height-24 min-w-36
-        p-x-10
-        bg-gray-04 border-radius-6
-        text-center cursor-pointer
-        flex items-center justify-center
-        transition-all-400;
-
       background-color: rgba(0, 0, 0, 0.04);
       color: rgba(0, 0, 0, 0.7);
 
@@ -179,19 +171,6 @@ const onClose = () => {
         background-color: rgba(0, 0, 0, 0.08);
         color: rgba(0, 0, 0, 0.95);
       }
-      &.active {
-        background-color: rgba(66, 133, 244, 0.08);
-        @apply text-green-500;
-      }
-    }
-  }
-
-  &.hover:hover {
-    background-color: rgba(66, 133, 244, 0.08);
-    @apply text-green-500;
-
-    [class^='i-'] {
-      @apply text-green-500;
     }
   }
 }

@@ -1,11 +1,11 @@
 <template>
-  <div class="app-serach-wrap">
-    <div class="app-serach-box-wrap">
+  <div class="app-serach-wrap h-[90px] w-full px-[26px]">
+    <div class="app-serach-box-wrap mx-auto">
       <div class="app-serach-box relative">
         <form class="input-box relative flex items-center" @submit.prevent="onSearch">
           <div id="selectEngine" class="select relative">
-            <Menu as="div" class="relative inline-block wh-full">
-              <MenuButton class="wh-full">
+            <Menu as="div" class="relative inline-block w-full h-full">
+              <MenuButton class="w-full h-full">
                 <div id="selectEngine" class="select">
                   <img
                     class="search-icon"
@@ -22,7 +22,7 @@
                 leave-from-class="transform scale-100 opacity-100"
                 leave-to-class="transform scale-95 opacity-0"
               >
-                <MenuItems class="select-menu absolute w-600 p-10 m-t-4">
+                <MenuItems class="select-menu absolute w-[600px] p-[10px] mt-4">
                   <VueDraggable
                     class="verflow-hidden w-full z-0 items-center origin-top flex gap-10 action"
                     v-model="seList"
@@ -31,13 +31,13 @@
                     <template v-for="se in seList" :key="se.title">
                       <MenuItem v-slot="{ close }">
                         <div
-                          class="w-64 items-center justify-center"
+                          class="w-[64px] items-center justify-center"
                           @click="onSeSelect(se, close)"
                         >
                           <div class="se-item-icon">
-                            <img :src="se.src" class="w-24 h-24" />
+                            <img :src="se.src" class="w-[24px] h-[24px]" />
                           </div>
-                          <div class="text-center color-#222 text-12px">
+                          <div class="text-center text-[#222] text-[12px]">
                             {{ se.title }}
                           </div>
                         </div>
@@ -51,7 +51,7 @@
           <input
             id="searchInput"
             autocomplete="off"
-            class="se-input w-full h-ful f14 bg-transparent leading-5"
+            class="se-input w-full h-full text-[14px] bg-transparent leading-5"
             maxlength="220"
             placeholder="输入搜索内容"
             type="text"
@@ -111,11 +111,9 @@ function onSearch(e: any) {
 
 <style lang="scss" scoped>
 .app-serach-wrap {
-  @apply h-90 w-full p-x-26;
   .app-serach-box-wrap {
     max-width: var(--icon-grid-width, 1350px);
     transform: translateY(calc(50% - 4px));
-    @apply mx-auto;
   }
 }
 .app-serach-box {

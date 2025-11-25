@@ -8,9 +8,9 @@
     draggable
   >
     <n-card :bordered="false" size="huge" role="dialog">
-      <div class="icon-form">
-        <div class="item">
-          <label for="addr" class="label">地址</label>
+      <div class="icon-form flex items-center flex-col gap-y-3">
+        <div class="item flex w-full items-center">
+          <label for="addr" class="label w-[70px]">地址</label>
           <n-input-group class="flex-1">
             <n-input
               id="addr"
@@ -20,8 +20,8 @@
             <!-- <n-button type="primary" @click="onGetIcon"> 获取图标 </n-button> -->
           </n-input-group>
         </div>
-        <div class="item">
-          <label for="name" class="label">名称</label>
+        <div class="item flex w-full items-center">
+          <label for="name" class="label w-[70px]">名称</label>
           <n-input
             class="flex-1"
             id="name"
@@ -29,16 +29,17 @@
             placeholder="请输入图标名称"
           />
         </div>
-        <div class="item">
-          <label for="color" class="label">图标颜色</label>
+        <div class="item flex w-full items-center">
+          <label for="color" class="label w-[70px]">图标颜色</label>
           <n-color-picker
             id="color"
+            class="w-[70px]"
             v-model:value="iconForm.iconColor"
             :swatches="swatches"
           />
         </div>
-        <div class="item">
-          <label for="text" class="label">图标文字</label>
+        <div class="item flex w-full items-center">
+          <label for="text" class="label w-[70px]">图标文字</label>
           <n-input
             class="flex-1"
             id="text"
@@ -47,37 +48,57 @@
             :maxlength="iconNameMaxLength"
           />
         </div>
-        <div class="flex gap-x-2 w-full m-l-140">
+        <div class="flex gap-x-2 w-full ml-[140px]">
           <div
-            class="icon-type"
+            class="icon-type flex flex-col items-center justify-center gap-y-1"
             :class="iconForm.iconType === 'textIcon' ? 'active' : ''"
           >
-            <div class="icon-preview">
-              <div class="icon" :style="{ backgroundColor: iconForm.iconColor }">
-                <span class="icon-txt" :style="getIconTextStyle(iconForm.iconName)">{{
-                  iconForm.iconName
-                }}</span>
+            <div
+              class="icon-preview w-[64px] h-[64px] text-[22px] border border-solid border-gray-300 cursor-pointer"
+            >
+              <div
+                class="icon relative w-full h-full flex items-center justify-center whitespace-nowrap"
+                :style="{ backgroundColor: iconForm.iconColor }"
+              >
+                <span
+                  class="icon-txt absolute left-1/2 font-medium text-[22px] leading-none text-white"
+                  :style="getIconTextStyle(iconForm.iconName)"
+                  >{{ iconForm.iconName }}</span
+                >
               </div>
             </div>
-            <div class="preview-text">文字图标</div>
+            <div
+              class="preview-text text-[14px]"
+              :class="{ 'text-green-500': iconForm.iconType === 'textIcon' }"
+            >
+              文字图标
+            </div>
           </div>
           <div
-            class="icon-type"
+            class="icon-type flex flex-col items-center justify-center gap-y-1"
             :class="iconForm.iconType === 'uploadIcon' ? 'active' : ''"
           >
-            <div class="icon-preview" @click="onUploadIcon">
-              <div class="icon-upload">
+            <div
+              class="icon-preview w-[64px] h-[64px] text-[22px] border border-solid border-gray-300 cursor-pointer"
+              @click="onUploadIcon"
+            >
+              <div class="icon-upload w-full h-full flex items-center justify-center">
                 <img v-if="iconForm.iconImage" :src="iconForm.iconImage" alt="预览" />
-                <div v-else class="i-mingcute:close-line rotate-45"></div>
+                <div v-else class="icon-[mingcute--close-line] rotate-45"></div>
                 <input type="file" accept="image/*" ref="uploadInput" class="hidden" />
               </div>
             </div>
-            <div class="preview-text">上传图标</div>
+            <div
+              class="preview-text text-[14px]"
+              :class="{ 'text-green-500': iconForm.iconType === 'uploadIcon' }"
+            >
+              上传图标
+            </div>
           </div>
         </div>
       </div>
       <template #footer>
-        <n-button type="primary" class="m-l-70 w-120" @click="onEditIcon">
+        <n-button type="primary" class="ml-[70px] w-[120px]" @click="onEditIcon">
           确定
         </n-button>
       </template>
@@ -94,7 +115,7 @@
     preset="dialog"
     style="width: auto"
   >
-    <div class="w-260 h-260 p-0">
+    <div class="w-[260px] h-[260px] p-0">
       <vueCropper
         ref="cropperRef"
         :img="previewUrl"
@@ -106,7 +127,11 @@
         :autoCropHeight="cropperOption.autoCropHeight"
       />
     </div>
-    <n-button type="primary" class="m-t-10 m-l-70 w-120" @click="handleCroppedImage">
+    <n-button
+      type="primary"
+      class="mt-[10px] ml-[70px] w-[120px]"
+      @click="handleCroppedImage"
+    >
       确定
     </n-button>
   </n-modal>
@@ -255,45 +280,20 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-.icon-form {
-  @apply flex items-center flex-col gap-y-3;
   .item {
-    @apply flex w-full items-center;
-    .label {
-      @apply w-70;
-    }
-    :deep(.n-color-picker) {
-      @apply w-70;
-    }
   }
   .icon-type {
-    @apply flex flex-col items-center justify-center gap-y-1;
     .icon-preview {
-      @apply w-64 h-64 font-size-22 border border-solid border-gray-300 cursor-pointer;
       border-radius: var(--icon-radius);
       overflow: hidden;
       &:hover {
         box-shadow: 0 0 12px 3px #0003;
       }
       .icon {
-        @apply relative w-full h-full flex items-center justify-center whitespace-nowrap;
         .icon-txt {
           transform-origin: 0 center;
-          @apply absolute left-1/2 font-500 text-5.5 line-height-1 text-white;
         }
       }
-      .icon-upload {
-        @apply w-full h-full flex items-center justify-center;
-      }
-    }
-    .preview-text {
-      @apply text-3.5;
     }
   }
-  .active {
-    .preview-text {
-      @apply text-green;
-    }
-  }
-}
 </style>

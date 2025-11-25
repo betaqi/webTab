@@ -1,16 +1,16 @@
 <template>
-  <div class="w-full h-full p-y-10 p-l-10 p-r-20 flex flex-col gap-y-10px">
+  <div class="w-full h-full py-[10px] pl-[10px] pr-[20px] flex flex-col gap-y-[10px]">
     <n-card
       v-for="(section, sectionIndex) in iconSchema"
       :key="sectionIndex"
       :title="section.title"
       hoverable
-      class="border-radius-6"
+      class="rounded-[6px]"
     >
       <div
         v-for="(config, configIndex) in section.configs"
         :key="configIndex"
-        class="flex justify-between items-center gap-col-12px p-x-12 h-36"
+        class="flex justify-between items-center gap-x-[12px] px-[12px] h-[36px]"
       >
         <span>{{ config.label }}</span>
         <FormBuilder
@@ -34,5 +34,4 @@ import iconSchema from '@/schema/iconSchema'
 import { storeToRefs } from 'pinia'
 const iconStore = useIconStore()
 const { values } = storeToRefs(iconStore)
-
 </script>

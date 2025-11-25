@@ -1,10 +1,10 @@
 <template>
   <div
-    class="app-main"
+    class="app-main flex flex-col w-full h-full select-none"
     @contextmenu.prevent="showGlobalMenu($event)"
     @click="hideAllMenus"
   >
-    <div class="app-header"></div>
+    <div class="app-header h-[3vh]"></div>
     <Search></Search>
     <Widget :show-widget-menu="showWidgetMenu"></Widget>
   </div>
@@ -16,8 +16,8 @@
     @select="handleMenuSelect"
     @close="hideAllMenus"
   />
-  <IconSetting ref="iconSettingRef" @edit-icon="onEditIcon"/>
-  <DrawerSetting ref="SettingDrawerRef"/>
+  <IconSetting ref="iconSettingRef" @edit-icon="onEditIcon" />
+  <DrawerSetting ref="SettingDrawerRef" />
 </template>
 
 <script setup lang="ts">
@@ -110,9 +110,5 @@ function openIconTab(widget: IWidget) {
 
 <style lang="scss" scoped>
 .app-main {
-  @apply flex flex-col wh-full user-select-none;
-  .app-header {
-    @apply h-[3vh];
-  }
 }
 </style>

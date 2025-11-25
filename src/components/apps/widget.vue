@@ -1,6 +1,6 @@
 <template>
   <div class="app-widget">
-    <div class="app-widget-grid">
+    <div class="app-widget-grid h-full mx-auto px-[45px]">
       <VueDraggable class="widget-grid" v-model="widgetList" :animation="300">
         <template v-for="item in widgetList" :key="item.id">
           <div
@@ -8,12 +8,20 @@
             :style="getWidgetBg(item)"
             @contextmenu.stop.prevent="showWidgetMenu($event, item)"
           >
-            <div class="widget-item-icon">
-              <span class="icon-txt" :style="getIconTextStyle(item)">{{
-                item.iconName
-              }}</span>
+            <div
+              class="widget-item-icon flex w-full h-full text-white items-center whitespace-nowrap relative"
+            >
+              <span
+                class="icon-txt absolute left-1/2 font-medium text-[22px] leading-none"
+                :style="getIconTextStyle(item)"
+                >{{ item.iconName }}</span
+              >
             </div>
-            <div class="widget-item-name">{{ item.name }}</div>
+            <div
+              class="widget-item-name text-center font-medium w-full overflow-hidden text-ellipsis whitespace-nowrap"
+            >
+              {{ item.name }}
+            </div>
           </div>
         </template>
       </VueDraggable>
@@ -45,7 +53,6 @@ const { getIconTextStyle } = iconStore
   flex: 1 1 0%;
   .app-widget-grid {
     max-width: var(--icon-grid-width, 1350px);
-    @apply h-full mx-auto p-x-45;
   }
   .widget-grid {
     padding: 3vh 0;
@@ -64,9 +71,7 @@ const { getIconTextStyle } = iconStore
       transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
 
       .widget-item-icon {
-        @apply flex w-full h-full text-white items-center whitespace-nowrap relative;
         .icon-txt {
-          @apply absolute left-1/2 font-weight-500 font-size-22 line-height-1;
           transform-origin: 0 center;
           transform: scale(0.94) translateX(-50%);
           transition: transform 0.2s ease-in-out;
@@ -118,7 +123,6 @@ const { getIconTextStyle } = iconStore
       font-size: var(--icon-nameSize);
       color: var(--icon-nameColor);
       display: var(--icon-name);
-      @apply text-center fw-500 w-full overflow-hidden text-ellipsis whitespace-nowrap;
     }
   }
 }

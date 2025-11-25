@@ -97,10 +97,28 @@ export const useWidgetStore = defineStore('widget', () => {
     })
   }
 
+  // GSAP Flip 动画回调
+  let flipAnimator: (() => (() => void)) | null = null
+
+  function setFlipAnimator(animator: () => (() => void)) {
+    flipAnimator = animator
+  }
+
   function layoutWidget(widget: IWidget, size: { width: number; height: number }) {
     const findWidget = findWidgetById(widget.id)
     if (findWidget) {
+      // 在尺寸变化前捕获状态
+      const animate = flipAnimator?.()
+
+      // 应用尺寸变化
       findWidget.size = size
+
+      // 触发 Flip 动画
+      if (animate) {
+        requestAnimationFrame(() => {
+          animate()
+        })
+      }
     }
   }
 
@@ -117,5 +135,5 @@ export const useWidgetStore = defineStore('widget', () => {
     }
   }
 
-  return { widgetList, getWidgetBg, createWidget, onEditIcon, layoutWidget }
+  return { widgetList, getWidgetBg, createWidget, onEditIcon, layoutWidget, setFlipAnimator }
 })

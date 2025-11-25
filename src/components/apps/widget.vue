@@ -35,6 +35,10 @@ import { useIconStore } from '@/stores/icon'
 import { useWidgetStore } from '@/stores/widget'
 import { VueDraggable } from 'vue-draggable-plus'
 import type { IWidget } from '@/utils/types'
+import { gsap } from 'gsap'
+import { Flip } from 'gsap/Flip'
+
+gsap.registerPlugin(Flip)
 
 defineProps<{
   showWidgetMenu: (event: MouseEvent, widget: IWidget) => void
@@ -46,6 +50,22 @@ const { getWidgetBg } = widgetStore
 
 const iconStore = useIconStore()
 const { getIconTextStyle } = iconStore
+
+// 在 store 中设置 Flip 动画触发器
+onMounted(() => {
+  widgetStore.setFlipAnimator(() => {
+    const state = Flip.getState('.widget-item')
+    return () => {
+      Flip.from(state, {
+        duration: 0.2,
+        ease: 'power2.inOut',
+        scale: true,
+        absolute: true,
+        simple: true, // 只动画化 transform，不动画化其他 CSS 属性
+      })
+    }
+  })
+})
 </script>
 
 <style scoped lang="scss">
@@ -68,7 +88,6 @@ const { getIconTextStyle } = iconStore
       grid-column: span 1;
       grid-row: span 1;
       background-size: cover;
-      transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
 
       .widget-item-icon {
         .icon-txt {
